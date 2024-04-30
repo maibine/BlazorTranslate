@@ -1,18 +1,24 @@
-﻿@page "/demo"
+﻿@* @page "/demo" *@
+@page "/"
+
+@using MarkdownEditorDemo.Services
+
+@inject ViewOptionsService ViewOption
 
 <div class="col-md-12">
-    <MarkdownEditor @bind-Value="@markdownValue" MaxHeight="300px"
-                    ValueHTMLChanged="@OnMarkdownValueHTMLChanged"
-                    SpellChecker="false" @ref="Markdown1" />
+   <button @onclick="ViewOption.Toggle">@(ViewOption.IsNavigationVisible ? "Hide" : "Show")</button>
+   <MarkdownEditor @bind-Value="@markdownValue" MaxHeight="300px"
+                   ValueHTMLChanged="@OnMarkdownValueHTMLChanged"
+                   SpellChecker="false" @ref="Markdown1" />
 
-    <button @onclick="ChangeText">Change text</button>
-    <hr />
+   <button @onclick="ChangeText">Change text</button>
+   <hr />
 
-    <h3>Result</h3>
-    @((MarkupString)markdownHtml)
+   <h3>Result</h3>
+   @((MarkupString)markdownHtml)
 
-    <h3>Value</h3>
-    @((MarkupString)markdownValue)
+   <h3>Value</h3>
+   @((MarkupString)markdownValue)
 </div>
 
 @code {

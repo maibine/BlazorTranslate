@@ -39,7 +39,7 @@ public class FilesController : ControllerBase
         _httpContextAccessor = httpContextAccessor;
 
         _fileSizeLimit = config.GetValue<long>("FileSizeLimit");
-        _targetFolderPath = (string)System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase);
+        _targetFolderPath = (string)System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
         _targetFolderPath = Path.Combine(_targetFolderPath, "Uploads").Replace("file:\\", "");
 
         Directory.CreateDirectory(_targetFolderPath);
